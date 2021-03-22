@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Authenticator",
+"language": "GDScript",
+"path": "res://managers/ServerAuthenticator.gd"
+}, {
+"base": "Reference",
 "class": "NakamaAPI",
 "language": "GDScript",
 "path": "res://addons/com.heroiclabs.nakama/api/NakamaAPI.gd"
@@ -78,8 +83,14 @@ _global_script_classes=[ {
 "class": "NakamaWriteStorageObject",
 "language": "GDScript",
 "path": "res://addons/com.heroiclabs.nakama/api/NakamaWriteStorageObject.gd"
+}, {
+"base": "Reference",
+"class": "StorageManager",
+"language": "GDScript",
+"path": "res://managers/StorageManager.gd"
 } ]
 _global_script_class_icons={
+"Authenticator": "",
 "NakamaAPI": "",
 "NakamaAsyncResult": "",
 "NakamaClient": "",
@@ -93,7 +104,8 @@ _global_script_class_icons={
 "NakamaSocket": "",
 "NakamaSocketAdapter": "",
 "NakamaStorageObjectId": "",
-"NakamaWriteStorageObject": ""
+"NakamaWriteStorageObject": "",
+"StorageManager": ""
 }
 
 [application]
@@ -105,6 +117,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
+ServerConnection="*res://managers/ServerConnection.gd"
 
 [editor_plugins]
 
