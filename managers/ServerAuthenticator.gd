@@ -4,7 +4,7 @@ extends Reference
 
 var session : NakamaSession
 var _client : NakamaClient
-
+var _dev_tools := DevTools.new()
 
 
 # Funcion constructora, cuando se instancia este script, es OBLIGATORIO dar una sesion y un client
@@ -28,26 +28,29 @@ func authenticate_by_id_async() -> int:
 				session = new_session
 				yield(Engine.get_main_loop(), "idle_frame") # Si lo quito no funciona, no sé.
 				print("Succesfully authenticated with TOKEN:\n %s" % new_session)
+				_dev_tools.Logger.stamp("Succesfully authenticated with TOKEN:\n %s" % new_session,OK)
 				return OK
 	
 # Si la sesion anterior no esta disponible, ha expirado o es invalida
 	var new_session:NakamaSession = yield(_client.authenticate_device_async(device_id),"completed")
 	if new_session.is_exception():
 					print("Unable to auth:\n %s" % new_session.get_exception())
+					_dev_tools.Logger.stamp("Unable to auth:\n %s" % new_session.get_exception(),FAILED)
 					return FAILED
 	else:
 			session = new_session
 			TokenFileWorker.token_save_local(session.token)
 			print("Succesfully authenticated without TOKEN:\n %s" % new_session)
+			_dev_tools.Logger.stamp("Succesfully authenticated with TOKEN")
 			return OK
 
 
 # Clase ayudante para guardar y leer el token con contraseña
 class TokenFileWorker:
 	const AUTH_PATH:String = "user://saves.dat"
+	var _dev_tools: DevTools
 	
 	# Abre el archivo utilizando una contraseña que es especifica de cada dispositivo
-	
 	# Guarda el token en auth_path
 	static func token_save_local(token:String)-> void:
 		var device_id := OS.get_unique_id()
@@ -70,6 +73,6 @@ class TokenFileWorker:
 		if err == OK:
 			var saved_token := token_file.get_line()
 			token_file.close()
-			print("Succesfully read TOKEN")
+			print("Succesful read TOKEN")
 			return saved_token
 		return ""
