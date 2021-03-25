@@ -6,7 +6,7 @@ extends Reference
 	# Opcion de abrir el archivo cada vez que se cierre el juego.
 	
 class Logger:
-	
+	# STARTUP: Limpiar el log diario?
 	# Borra el archivo del último log. No sé si es útil
 	static func clear_log() -> void:
 		var LOG_PATH:String = _get_path()

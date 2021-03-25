@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Authenticator",
 "language": "GDScript",
-"path": "res://managers/ServerAuthenticator.gd"
+"path": "res://managers/Server_Authenticator.gd"
 }, {
 "base": "Reference",
 "class": "DevTools",
@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "StorageManager",
 "language": "GDScript",
-"path": "res://managers/StorageManager.gd"
+"path": "res://managers/Server_StorageManager.gd"
 } ]
 _global_script_class_icons={
 "Authenticator": "",
